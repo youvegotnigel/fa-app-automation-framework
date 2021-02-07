@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+    <listeners>
+        <listener class-name="com.listener.ListenerClass"></listener>
+    </listeners>
+
+    <test name="Regression" parallel="none">
+        <classes>
+            <class name="login.LoginPageTests">
+                <methods>
+                    <include name="test_successful_login"/>
+                    <include name="test_unsuccessful_login"/>
+                    <include name="test_login_for_empty_credential"/>
+                    <include name="verify_landing_page"/>
+                </methods>
+            </class>
+            <class name="homepage.HomePageTests">
+                <methods>
+                    <include name="test_successful_login"/>
+                    <include name="verify_homepage_header"/>
+                    <include name="verify_contents_of_side_menu_with_tile_icons"/>
+                    <include name="verify_sign_out"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
