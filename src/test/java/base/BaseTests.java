@@ -66,11 +66,11 @@ public class BaseTests {
         //System.setProperty("webdriver.chrome.driver", "resources\\chromedriver.exe");
         //System.setProperty("webdriver.chrome.driver", props.getProperty("webdriver.chrome.driver"));
 
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver(getChromeOptions());
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver(getChromeOptions());
 
-//        WebDriverManager.firefoxdriver().setup();
-//        driver = new FirefoxDriver();
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
 
         //get url from property file
         driver.get(props.getProperty("site.nqa_fa_app.url"));
