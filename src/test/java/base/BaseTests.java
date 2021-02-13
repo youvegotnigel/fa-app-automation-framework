@@ -6,6 +6,7 @@ package base;
 
 import com.extentManager.ExtentManager;
 import com.utility.Log;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.OutputType;
@@ -13,6 +14,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
@@ -55,14 +58,19 @@ public class BaseTests {
         try {
             props.load(new FileInputStream(new File("resources\\test.properties")));
         } catch(Exception e) {
-            Log.error("Property File Not Found !");
-            Log.error("ERROR! : " + e);
+            Log.debug("Property File Not Found !");
+            Log.debug("ERROR! : " + e);
             System.exit(-1);
         }
 
         //System.setProperty("webdriver.chrome.driver", "resources\\chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", props.getProperty("webdriver.chrome.driver"));
+        //System.setProperty("webdriver.chrome.driver", props.getProperty("webdriver.chrome.driver"));
+
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(getChromeOptions());
+
+//        WebDriverManager.firefoxdriver().setup();
+//        driver = new FirefoxDriver();
 
         //get url from property file
         driver.get(props.getProperty("site.nqa_fa_app.url"));
