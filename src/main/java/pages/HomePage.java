@@ -33,6 +33,11 @@ public class HomePage {
     private By homeButton = By.xpath("//button[1]//div[1]//div[1]");
     private By sideMenuFooter = By.cssSelector("ion-segment-button[role='button']");
 
+    private By sewingPlanUploadButton = By.xpath("//span[normalize-space()='Sewing Plan Upload']");
+    private By sizeListMappingButton = By.xpath("//span[normalize-space()='Size List Mapping']");
+    private By silhouetteCreationButton = By.xpath("//span[normalize-space()='Silhouette Creation']");
+    private By scheduleSettingsButton = By.xpath("//span[normalize-space()='Schedule Settings']");
+
     //Constructor
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -145,5 +150,19 @@ public class HomePage {
         for(String a : list){
             System.out.println("list : " + a);
         }
+    }
+
+    //pass the driver for the Sewing Plan Upload Page
+    public SewingPlanUploadPage goToSewingPlanUploadPage() {
+        explicitWaitMethod(sewingPlanUploadButton);
+        driver.findElement(sewingPlanUploadButton).click();
+        return new SewingPlanUploadPage(driver);
+    }
+
+    //pass the driver for the Size List Mapping Page
+    public SizeListMappingPage goToSizeListMappingPage() {
+        explicitWaitMethod(sizeListMappingButton);
+        driver.findElement(sizeListMappingButton).click();
+        return new SizeListMappingPage(driver);
     }
 }
